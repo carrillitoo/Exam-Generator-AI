@@ -1,4 +1,5 @@
 # 🎓 AI Exam Generator
+
 Application for generating and evaluating AI exam-style questions.
 
 ## 📋 Requirements
@@ -13,5 +14,3 @@ Application for generating and evaluating AI exam-style questions.
 2. **Install dependencies:**
    ```bash
    pip install -r requirements.txt
-
-Made by Víctor Carrillo Gil, Daniel Pérez Gómez, Javier Peñalver Gómez, Diego Sánchez Cano and Javier Sánchez Dólera.
