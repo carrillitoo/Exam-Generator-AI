@@ -1,0 +1,152 @@
+[
+  {
+    "id": "search_001",
+    "type": "search",
+    "topic": "Search Strategies",
+    "difficulty": "easy",
+    "question": "Given the following problems and instances:\n1. N-Queens (N=8)\n2. Generalized Hanoi (3 pegs, 5 disks)\n3. Graph Coloring (planar graph, 10 nodes)\n4. Knight's Tour (8x8 board)\n\nWhich is the most suitable solving strategy for the N-Queens problem with N=8 from those presented in the course (BFS, DFS, A*, Hill Climbing, Backtracking)?",
+    "expected_answer": {
+      "strategy": "Backtracking",
+      "explanation": "N-Queens is a constraint satisfaction problem where we need to find valid placements. Backtracking is ideal because it explores the search space systematically, prunes invalid branches early, and guarantees finding a solution if one exists. DFS could work but lacks the constraint-checking optimization. BFS and A* are inefficient for this combinatorial problem.",
+      "reference": "Lecture 3: Search Strategies and CSP"
+    }
+  },
+  {
+    "id": "game_001",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Consider the following game in normal form:\n\n        Player 2\n        L    R\nPlayer 1\nU      3,2  1,3\nD      2,1  4,4\n\nDoes a pure Nash equilibrium exist? If yes, identify it and justify your answer.",
+    "expected_answer": {
+      "exists": true,
+      "equilibrium": "(D, R)",
+      "explanation": "A pure Nash equilibrium exists at (D, R) with payoffs (4,4). From (D,R): Player 1 cannot improve by switching to U (would get 1 instead of 4). Player 2 cannot improve by switching to L (would get 1 instead of 4). Therefore, neither player has incentive to deviate unilaterally.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_002",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       3,2   1,3\nD       2,1   4,4\n\nDoes a pure Nash equilibrium exist? If yes, identify it and justify your answer.",
+    "expected_answer": {
+      "exists": true,
+      "equilibrium": "(D, R)",
+      "explanation": "At (D,R) payoffs are (4,4). P1 deviating to U gives 1<4; P2 deviating to L gives 1<4. Mutual best responses coincide at (D,R).",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_003",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       2,4   3,2\nD       1,3   5,1\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": true,
+      "equilibrium": "(U, L)",
+      "explanation": "(U,L) gives (2,4). From there, P1 switching to D yields 1<2; P2 switching to R yields 2<4. No profitable unilateral deviation.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_004",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       2,3   4,1\nD       3,2   1,4\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": false,
+      "equilibrium": "None",
+      "explanation": "Best responses cycle: if P2 plays L, P1 prefers U; if P2 plays R, P1 prefers D. If P1 plays U, P2 prefers R; if P1 plays D, P2 prefers L. No mutual best response pair.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_005",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       1,1   4,2\nD       3,4   2,3\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": true,
+      "equilibrium": "(D, L)",
+      "explanation": "(D,L) yields (3,4). P1 switching to U gives 1<3; P2 switching to R gives 3<4. Thus (D,L) is a pure Nash equilibrium.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_006",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       2,2   5,1\nD       1,5   3,3\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": false,
+      "equilibrium": "None",
+      "explanation": "P2’s best response to U is L; to D is R. P1’s best response to L is U; to R is D. The responses alternate, preventing a stable pure equilibrium.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_007",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       4,1   2,3\nD       3,4   1,2\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": false,
+      "equilibrium": "None",
+      "explanation": "Check each outcome: at (U,L) P2 prefers R; at (U,R) P1 prefers D; at (D,L) P1 prefers U; at (D,R) P2 prefers L. No outcome is stable for both players.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "game_008",
+    "type": "game_theory",
+    "topic": "Game Theory - Normal Form",
+    "difficulty": "medium",
+    "question": "Payoff matrix:\n\n        Player 2\n          L     R\nPlayer 1\nU       2,5   3,3\nD       4,2   1,4\n\nDoes a pure Nash equilibrium exist?",
+    "expected_answer": {
+      "exists": true,
+      "equilibrium": "(U, R)",
+      "explanation": "(U,R) gives (3,3). P1 switching to D gives 1<3; P2 switching to L gives 2<3. Therefore neither player benefits from deviating.",
+      "reference": "Lecture 7: Game Theory and Nash Equilibrium"
+    }
+  },
+  {
+    "id": "csp_001",
+    "type": "csp",
+    "topic": "Constraint Satisfaction Problems",
+    "difficulty": "medium",
+    "question": "Given:\n- Variables: X, Y, Z\n- Domains: D(X) = {1,2,3}, D(Y) = {1,2,3}, D(Z) = {1,2,3}\n- Constraints: X < Y, Y < Z, X ≠ Z\n- Partial assignment: X = 1\n\nWhat will be the final assignment of Y and Z if we use Backtracking with Forward Checking?",
+    "expected_answer": {
+      "assignment": "X=1, Y=2, Z=3",
+      "explanation": "Starting with X=1, Forward Checking reduces domains: D(Y) becomes {2,3} (Y > 1), D(Z) becomes {2,3} (Z ≠ 1). Assigning Y=2, Forward Checking further reduces D(Z) to {3} (Z > 2). Thus Z=3. Final assignment: X=1, Y=2, Z=3.",
+      "reference": "Lecture 4: CSP and Backtracking Algorithms"
+    }
+  },
+  {
+    "id": "minimax_001",
+    "type": "minimax",
+    "topic": "Adversarial Search",
+    "difficulty": "hard",
+    "question": "Consider the following game tree (MAX plays first):\n\n          MAX\n         /   \\\n       MIN   MIN\n       / \\   / \\\n      3  5  2  9\n\nWhat will be the value at the root and how many leaf nodes will be visited when applying MinMax with Alpha-Beta pruning (left-to-right evaluation)?",
+    "expected_answer": {
+      "root_value": 3,
+      "visited_leaves": 3,
+      "explanation": "Left subtree: MIN evaluates left child (3), then right child (5), chooses min=3. Alpha becomes 3. Right subtree: MIN evaluates left child (2). Since 2 < 3 (current alpha), the right child (9) is pruned and not visited. MIN returns 2. MAX chooses max(3,2)=3. Leaves visited: 3, 5, 2 (total: 3 leaves).",
+      "reference": "Lecture 6: Minimax and Alpha-Beta Pruning"
+    }
+  },
+  {
+    "id": "q_nqueens_11",
+    "topic": "Search Optimization",
+    "type": "dynamic_algo",
+    "difficulty": "hard",
+    "question": "Se ha ejecutado un código en segundo plano con 5 algoritmos (Backtracking, DFS, BFS, A*, Hill Climbing) para resolver N-Queens con N=11. \n\n¿Cuál de ellos ha encontrado una solución válida en el MENOR tiempo de ejecución posible? (Responde con el nombre del algoritmo).",
+    "code_file": "N-queens_N11.cpp",
+    "expected_answer": {} 
+  }
+]

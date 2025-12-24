@@ -1,0 +1,12 @@
+streamlit==1.28.0
+fpdf==1.7.2
+PyPDF2==3.0.1
+pandas==2.0.3
+openpyxl==3.1.2
+
+streamlit
+pandas
+openpyxl
+thefuzz
+fpdf
+PyPDF2
