@@ -7,8 +7,9 @@ import subprocess
 import os
 import re
 import platform
+import random 
 
-# Importamos la nueva lógica de evaluación flexible
+# Importamos solo la evaluación y utilidades PDF
 from evaluation import evaluate_answer
 from pdf_utils import generate_question_pdf, generate_evaluation_pdf, extract_text_from_pdf
 
@@ -23,34 +24,45 @@ st.set_page_config(page_title="AI Exam Generator", page_icon="🎓", layout="wid
 
 # --- Helper: Ejecución Dinámica C++ ---
 def run_cpp_simulation(file_name):
+    """
+    Compila y ejecuta un archivo C++, extrayendo el algoritmo ganador.
+    Soporta salidas en inglés ("Algorithm:") y español ("Algoritmo:").
+    """
     source_path = CPP_DIR / file_name
     if not source_path.exists():
         return None, f"Error: File '{file_name}' not found at '{source_path}'."
 
     exe_name = source_path.with_suffix('.exe' if platform.system() == "Windows" else '.out')
     
-    # Compilación
+    # Compilación (Optimizada -O3)
     compile_cmd = ["g++", "-O3", str(source_path), "-o", str(exe_name)]
     try:
         subprocess.run(compile_cmd, check=True, capture_output=True)
     except subprocess.CalledProcessError as e:
         return None, f"Compilation Error: {e.stderr.decode()}"
     except FileNotFoundError:
-        return None, "Error: 'g++' compiler not found."
+        return None, "Error: 'g++' compiler not found. Please install MinGW (Windows) or build-essential (Linux)."
 
     # Ejecución
     try:
         cmd = [str(exe_name)]
-        result = subprocess.run(cmd, check=True, capture_output=True, text=True)
+        # Timeout de 5 segundos para seguridad
+        result = subprocess.run(cmd, check=True, capture_output=True, text=True, timeout=5)
         output = result.stdout
         
-        # Parsing: Busca la línea "> Algoritmo: [Nombre]"
-        match = re.search(r">\s*Algoritmo:\s*(.*)", output)
+        # --- PARSER FLEXIBLE ---
+        match = re.search(r">\s*(?:Algoritmo|Algorithm):\s*(.*)", output, re.IGNORECASE)
+        
         if match:
             best_algo = match.group(1).strip()
             return best_algo, None
         else:
-            return None, "Error: Could not parse the winning algorithm from the C++ output."
+            lines = output.strip().split('\n')
+            last_lines = "\n".join(lines[-5:]) if len(lines) > 5 else output
+            return None, f"Error: Output format not recognized.\nLast output:\n{last_lines}"
+            
+    except subprocess.TimeoutExpired:
+        return None, "Error: Execution timed out (infinite loop or too slow)."
     except Exception as e:
         return None, f"Execution Error: {str(e)}"
 
@@ -118,41 +130,45 @@ if page == "Generate Questions":
         else:
             topics = sorted(list(set(q.get('topic', 'General') for q in questions_db)))
             selected_topics = st.multiselect("Select Topics", topics, default=topics)
-            num_questions = st.slider("Number of Questions", 1, len(questions_db), min(4, len(questions_db)))
+            num_questions = st.slider("Number of Questions", 1, 20, 5) 
             st.session_state.test_id = st.text_input("Test ID", value=st.session_state.test_id)
 
     with col2:
         st.info("System Ready. Using **Fuzzy Logic Evaluation**.")
-        st.caption("Answers are now flexible (e.g., typos allowed, partial credit).")
+        st.caption("Answers are checked flexibly (e.g., partial matches).")
 
     if st.button("🎲 Generate Test", type="primary"):
-        import random
+        # Filtrar preguntas
         filtered = [q for q in questions_db if q.get('topic') in selected_topics]
         
         if not filtered:
             st.error("No questions match filters.")
         else:
-            selected = random.sample(filtered, min(num_questions, len(filtered)))
-            final_selection = []
+            # Selección aleatoria simple de la base de datos
+            count = min(num_questions, len(filtered))
+            # random.sample asegura que no haya duplicados si el pool es suficiente
+            selected = random.sample(filtered, count)
             
+            final_selection = []
             progress_bar = st.progress(0)
             status_text = st.empty()
             
             for i, q in enumerate(selected):
                 q_copy = q.copy()
-                # Si es dinámica, ejecutamos la simulación ahora
-                if q.get('type') == 'dynamic_algo':
-                    status_text.text(f"Simulating: {q.get('code_file')}...")
-                    best_algo, error = run_cpp_simulation(q['code_file'])
+                
+                # Ejecutar simulación si es necesario (C++)
+                if q_copy.get('type') == 'dynamic_algo':
+                    status_text.text(f"Simulating: {q_copy.get('code_file')}...")
+                    best_algo, error = run_cpp_simulation(q_copy['code_file'])
+                    
                     if error:
-                        st.error(error)
-                        q_copy['expected_answer'] = {'strategy': "Error"}
+                        q_copy['expected_answer'] = {'strategy': "Error in simulation"}
+                        # Opcional: st.warning(f"Sim error: {error}")
                     else:
-                        # Guardamos el resultado de la simulación
                         q_copy['expected_answer'] = {'strategy': best_algo}
                 
                 final_selection.append(q_copy)
-                progress_bar.progress((i + 1) / len(selected))
+                progress_bar.progress((i + 1) / count)
             
             status_text.empty()
             progress_bar.empty()
@@ -163,17 +179,21 @@ if page == "Generate Questions":
             st.session_state.evaluations = {}
             st.success(f"Generated {len(final_selection)} questions for Test ID: {st.session_state.test_id}")
 
-    # --- SECCIÓN DE PREVISUALIZACIÓN RESTAURADA ---
+    # --- SECCIÓN DE PREVISUALIZACIÓN ---
     if st.session_state.selected_questions:
         st.markdown("### 📋 Test Preview")
         for i, q in enumerate(st.session_state.selected_questions, 1):
-            with st.expander(f"Q{i}: {q.get('topic')} ({q.get('type')})"):
+            with st.expander(f"📄 Q{i}: {q.get('topic')} ({q.get('type')})"):
                 st.markdown(q['question'])
-                # Mostrar resultado de simulación si existe
+                # Mostrar respuesta esperada (calculada o estática)
                 if q.get('type') == 'dynamic_algo':
-                    strategy = q.get('expected_answer', {}).get('strategy', 'Pending')
+                    strategy = q.get('expected_answer', {}).get('strategy', 'Pending/Error')
                     st.caption(f"⚡ *System-calculated answer:* {strategy}")
-    # ---------------------------------------------
+                elif 'expected_answer' in q:
+                    # Manejar si es string o dict
+                    ans = q['expected_answer']
+                    if isinstance(ans, dict): ans = ans.get('text', str(ans))
+                    st.caption(f"🔑 *Expected:* {ans}")
 
 # 2. RESPONDER PREGUNTAS
 elif page == "Answer Questions":
@@ -187,7 +207,7 @@ elif page == "Answer Questions":
         q = st.session_state.selected_questions[idx]
         
         st.subheader(f"Question {idx + 1} of {total}")
-        st.info(f"Topic: {q.get('topic')} | Difficulty: {q.get('difficulty')}")
+        st.info(f"Topic: {q.get('topic')} | Difficulty: {q.get('difficulty', 'Normal')}")
         st.markdown(q['question'])
         
         user_answer = st.text_area("Your Answer", height=150, key=f"ans_{idx}")
@@ -199,7 +219,7 @@ elif page == "Answer Questions":
             
         if c2.button("💾 Save & Evaluate", type="primary"):
             if user_answer.strip():
-                # Evaluamos pasando el objeto 'q' completo (para ver valid_responses)
+                # Evaluación flexible usando el objeto completo 'q'
                 score, feedback = evaluate_answer(q, user_answer)
                 
                 st.session_state.answers[q['id']] = user_answer
@@ -236,14 +256,15 @@ elif page == "View Results":
             with st.expander(f"Q: {q.get('topic')} - {data['score']}%"):
                 st.write(f"**Question:** {q['question']}")
                 st.write(f"**You:** {data['user_answer']}")
-                
                 st.markdown("---")
                 st.write("**AI Feedback:**")
                 for f in data['feedback']: st.write(f"- {f}")
                 
-                # Mostrar respuesta correcta/válida
+                # Mostrar respuesta correcta
                 if 'valid_responses' in q:
-                    best_response = q['valid_responses'][0]['text'] # La primera suele ser la de 100pts
+                    best_response = q['valid_responses'][0]['text']
                     st.info(f"Ideal Answer: {best_response}")
                 elif 'expected_answer' in q:
-                    st.info(f"Expected: {q['expected_answer']}")
+                    ans = q['expected_answer']
+                    if isinstance(ans, dict): ans = ans.get('strategy', str(ans))
+                    st.info(f"Expected: {ans}")
