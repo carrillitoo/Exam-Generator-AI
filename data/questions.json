@@ -1,148 +1,5 @@
 [
   {
-    "id": "search_001",
-    "type": "search",
-    "topic": "Search Strategies",
-    "difficulty": "easy",
-    "question": "Given the following problems and instances:\n1. N-Queens (N=8)\n2. Generalized Hanoi (3 pegs, 5 disks)\n3. Graph Coloring (planar graph, 10 nodes)\n4. Knight's Tour (8x8 board)\n\nWhich is the most suitable solving strategy for the N-Queens problem with N=8 from those presented in the course (BFS, DFS, A*, Hill Climbing, Backtracking)?",
-    "valid_responses": [
-      { "text": "Backtracking", "score": 100 },
-      { "text": "Vuelta Atrás", "score": 100 },
-      { "text": "DFS", "score": 50 },
-      { "text": "Depth First Search", "score": 50 },
-      { "text": "Búsqueda en Profundidad", "score": 50 }
-    ],
-    "expected_answer": "Backtracking (It explores systematically and prunes invalid branches)."
-  },
-  {
-    "id": "game_001",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Consider the following game in normal form:\n\n```\n          Player 2\n            L       R\nP1  U     3,2     1,3\n    D     2,1     4,4\n```\n\nDoes a pure Nash equilibrium exist? If yes, identify it and justify your answer.",
-    "valid_responses": [
-      { "text": "(D, R)", "score": 100 },
-      { "text": "D, R", "score": 100 },
-      { "text": "D and R", "score": 100 },
-      { "text": "Down, Right", "score": 90 },
-      { "text": "Abajo, Derecha", "score": 90 }
-    ],
-    "expected_answer": "(D, R) - Neither player has incentive to deviate."
-  },
-  {
-    "id": "game_002",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     3,2     1,3\n    D     2,1     4,4\n```\n\nDoes a pure Nash equilibrium exist? If yes, identify it.",
-    "valid_responses": [
-      { "text": "(D, R)", "score": 100 },
-      { "text": "D, R", "score": 100 }
-    ],
-    "expected_answer": "(D, R)"
-  },
-  {
-    "id": "game_003",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     2,4     3,2\n    D     1,3     5,1\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "(U, L)", "score": 100 },
-      { "text": "U, L", "score": 100 },
-      { "text": "Up, Left", "score": 90 }
-    ],
-    "expected_answer": "(U, L)"
-  },
-  {
-    "id": "game_004",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     2,3     4,1\n    D     3,2     1,4\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "None", "score": 100 },
-      { "text": "No", "score": 100 },
-      { "text": "Does not exist", "score": 100 },
-      { "text": "No existe", "score": 100 }
-    ],
-    "expected_answer": "None (Best responses cycle)"
-  },
-  {
-    "id": "game_005",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     1,1     4,2\n    D     3,4     2,3\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "(D, L)", "score": 100 },
-      { "text": "D, L", "score": 100 }
-    ],
-    "expected_answer": "(D, L)"
-  },
-  {
-    "id": "game_006",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     2,2     5,1\n    D     1,5     3,3\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "None", "score": 100 },
-      { "text": "No", "score": 100 },
-      { "text": "Does not exist", "score": 100 }
-    ],
-    "expected_answer": "None"
-  },
-  {
-    "id": "game_007",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     4,1     2,3\n    D     3,4     1,2\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "None", "score": 100 },
-      { "text": "No", "score": 100 }
-    ],
-    "expected_answer": "None"
-  },
-  {
-    "id": "game_008",
-    "type": "game_theory",
-    "topic": "Game Theory - Normal Form",
-    "difficulty": "medium",
-    "question": "Payoff matrix:\n\n```\n          Player 2\n            L       R\nP1  U     2,5     3,3\n    D     4,2     1,4\n```\n\nDoes a pure Nash equilibrium exist?",
-    "valid_responses": [
-      { "text": "(U, R)", "score": 100 },
-      { "text": "U, R", "score": 100 }
-    ],
-    "expected_answer": "(U, R)"
-  },
-  {
-    "id": "csp_001",
-    "type": "csp",
-    "topic": "Constraint Satisfaction Problems",
-    "difficulty": "medium",
-    "question": "Given variables X,Y,Z with domains {1,2,3} and constraints X < Y, Y < Z, X != Z. If X=1, what is the final assignment?",
-    "valid_responses": [
-      { "text": "X=1, Y=2, Z=3", "score": 100 },
-      { "text": "1, 2, 3", "score": 100 },
-      { "text": "X:1, Y:2, Z:3", "score": 100 }
-    ],
-    "expected_answer": "X=1, Y=2, Z=3"
-  },
-  {
-    "id": "minimax_001",
-    "type": "minimax",
-    "topic": "Adversarial Search",
-    "difficulty": "hard",
-    "question": "Consider the following game tree (MAX plays first):\n\n```\n          MAX\n         /   \\\n       MIN   MIN\n       / \\   / \\\n      3  5  2  9\n```\n\nWhat will be the value at the root?",
-    "valid_responses": [
-      { "text": "3", "score": 100 },
-      { "text": "Value: 3", "score": 100 }
-    ],
-    "expected_answer": "3"
-  },
-  {
     "id": "q_nqueens_11",
     "topic": "Search Optimization",
     "type": "dynamic_algo",
@@ -156,7 +13,7 @@
     "topic": "Search Optimization (Hanoi)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Generalized Hanoi (3 pegs, 8 disks). Which algorithm was the fastest?",
+    "question": "For Generalized Hanoi with this instances (3 pegs, 8 disks). Which algorithm was the fastest?",
     "code_file": "Hanoi_N3M8.cpp",
     "expected_answer": {} 
   },
@@ -165,7 +22,7 @@
     "topic": "Search Optimization (Hanoi)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Generalized Hanoi (3 pegs, 10 disks). Which algorithm was the fastest?",
+    "question": "For Generalized Hanoi with this instances (3 pegs, 10 disks). Which algorithm was the fastest?",
     "code_file": "Hanoi_N3M10.cpp",
     "expected_answer": {} 
   },
@@ -174,7 +31,7 @@
     "topic": "Search Optimization (Hanoi)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Simulation: Generalized Hanoi (4 pegs, 9 disks). Which algorithm was the fastest?",
+    "question": "For Generalized Hanoi with this instances (4 pegs, 9 disks). Which algorithm was the fastest?",
     "code_file": "Hanoi_N4M9.cpp",
     "expected_answer": {} 
   },
@@ -183,7 +40,7 @@
     "topic": "Search Optimization (Hanoi)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Simulation: Generalized Hanoi (4 pegs, 11 disks). Which algorithm was the fastest?",
+    "question": "For Generalized Hanoi with this instances (4 pegs, 11 disks). Which algorithm was the fastest?",
     "code_file": "Hanoi_N4M11.cpp",
     "expected_answer": {} 
   },
@@ -192,7 +49,7 @@
     "topic": "Search Optimization (Knights Tour)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Knight's Tour 5x5 (Corner Start). Which algorithm is the Winner?",
+    "question": "For the problem Knight's Tour 5x5 (Corner Start). Which algorithm is the Winner?",
     "code_file": "Knight_N5.cpp",
     "expected_answer": {}
   },
@@ -201,7 +58,7 @@
     "topic": "Search Optimization (Knights Tour)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Knight's Tour 5x5 (Center Start). Which algorithm is the Winner?",
+    "question": "For the problem Knight's Tour 5x5 (Center Start). Which algorithm is the Winner?",
     "code_file": "Knight_N5_Center.cpp",
     "expected_answer": {}
   },
@@ -210,7 +67,7 @@
     "topic": "Search Optimization (Knights Tour)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Simulation: Knight's Tour 6x6. Which algorithm is the Winner?",
+    "question": "For the problem Knight's Tour 6x6. Which algorithm is the Winner?",
     "code_file": "Knight_N6.cpp",
     "expected_answer": {}
   },
@@ -219,7 +76,7 @@
     "topic": "Search Optimization (Knights Tour)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Simulation: Knight's Tour 8x8 (Standard). Which algorithm is the Winner?",
+    "question": "For the problem Knight's Tour 8x8 (Standard). Which algorithm is the Winner?",
     "code_file": "Knight_N8.cpp",
     "expected_answer": {}
   },
@@ -228,7 +85,7 @@
     "topic": "Search Optimization (Knights Tour)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Simulation: Knight's Tour 30x30 (Massive). Which algorithm successfully found a solution?",
+    "question": "For the problem Knight's Tour 30x30 (Massive). Which algorithm successfully found a solution?",
     "code_file": "Knight_N30.cpp",
     "expected_answer": {}
   },
@@ -237,7 +94,7 @@
     "topic": "Game Theory (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "easy",
-    "question": "Run 'Nash_2x2.cpp'. What is the equilibrium pair?",
+    "question": "Look at this game payoff matrix:\n\n```\n      L      R\nU   (2,1)  (0,0)\nD   (0,0)  (1,2)\n```\n\nWhat is the equilibrium pair?",
     "code_file": "Nash_2x2.cpp",
     "expected_answer": {}
   },
@@ -246,7 +103,7 @@
     "topic": "Game Theory (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Run 'Nash_3x3.cpp'. How many pure Nash Equilibria does the system detect, and what are their payoffs?",
+    "question": "Try to find pure equilibria for this complex game:\n\n```\n      0      1      2\n0   (3,3)  (0,4)  (1,0)\n1   (4,0)  (2,2)  (0,0)\n2   (0,1)  (0,0)  (5,5)\n```\n\nHow many pure Nash Equilibria does the system detect, and what are their payoffs?",
     "code_file": "Nash_3x3.cpp",
     "expected_answer": {}
   },
@@ -255,7 +112,7 @@
     "topic": "Game Theory (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Run 'Nash_NE.cpp' (Matching Pennies). Does the algorithm find a Pure Nash Equilibrium?",
+    "question": "Solve the question for the **Matching Pennies** game:\n\n```\n      L       R\nU   (1,-1)  (-1,1)\nD   (-1,1)  (1,-1)\n```\n\nDoes the algorithm find a Pure Nash Equilibrium?",
     "code_file": "Nash_NE.cpp",
     "expected_answer": {}
   },
@@ -264,7 +121,7 @@
     "topic": "Game Theory (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Run 'Nash_DP.cpp' (Prisoner's Dilemma). What is the single Pure Nash Equilibrium found?",
+    "question": "Solve the question for the classic **Prisoner's Dilemma**:\n\n```\n          Coop   Betray\nCoop      (3,3)   (0,5)\nBetray    (5,0)   (1,1)\n```\n\nWhat is the single Pure Nash Equilibrium found?",
     "code_file": "Nash_DP.cpp",
     "expected_answer": {}
   },
@@ -273,7 +130,7 @@
     "topic": "Game Theory (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Run 'Nash_CC.cpp' (Stag Hunt). Which equilibria does the code identify?",
+    "question": "Solve the question for the **Stag Hunt** game:\n\n```\n          Stag    Hare\nStag      (4,4)   (0,2)\nHare      (2,0)   (2,2)\n```\n\nWhich equilibria does the code identify?",
     "code_file": "Nash_CC.cpp",
     "expected_answer": {}
   },
@@ -282,7 +139,7 @@
     "topic": "Search Optimization (Graph Coloring)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Graph Coloring on a Complete Graph K5 (V=5, M=5). Which algorithm finds the valid coloring fastest?",
+    "question": "For a Graph Coloring on a Complete Graph K5 (V=5, M=5). Which algorithm finds the valid coloring fastest?",
     "code_file": "graphcoloring1.cpp",
     "expected_answer": {}
   },
@@ -291,7 +148,7 @@
     "topic": "Search Optimization (Graph Coloring)",
     "type": "dynamic_algo",
     "difficulty": "easy",
-    "question": "Simulation: Graph Coloring on a Cycle Graph C6 (V=6, M=2). Which algorithm finds the valid coloring fastest?",
+    "question": "For a Graph Coloring on a Cycle Graph C6 (V=6, M=2). Which algorithm finds the valid coloring fastest?",
     "code_file": "graphcoloring2.cpp",
     "expected_answer": {}
   },
@@ -300,7 +157,7 @@
     "topic": "Search Optimization (Graph Coloring)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Graph Coloring on a 3x3 Grid (V=9, M=2). Which algorithm finds the valid coloring fastest?",
+    "question": "For a Graph Coloring on a 3x3 Grid (V=9, M=2). Which algorithm finds the valid coloring fastest?",
     "code_file": "graphcoloring3.cpp",
     "expected_answer": {}
   },
@@ -309,7 +166,7 @@
     "topic": "Search Optimization (Graph Coloring)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Graph Coloring on Graph C8 (V=8, M=3). Which algorithm finds the valid coloring fastest?",
+    "question": "For a Graph Coloring on Graph C8 (V=8, M=3). Which algorithm finds the valid coloring fastest?",
     "code_file": "graphcoloring4.cpp",
     "expected_answer": {}
   },
@@ -318,7 +175,7 @@
     "topic": "Search Optimization (Graph Coloring)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Simulation: Graph Coloring on a Wheel Graph W6 (V=6, M=4). Which algorithm finds the valid coloring fastest?",
+    "question": "For a Graph Coloring on a Wheel Graph W6 (V=6, M=4). Which algorithm finds the valid coloring fastest?",
     "code_file": "graphcoloring5.cpp",
     "expected_answer": {}
   },
@@ -327,7 +184,7 @@
     "topic": "Constraint Satisfaction (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Run 'CSP_MapColoring_FC.cpp'. Given the Australia Map Coloring problem with 3 colors {Red, Green, Blue} and a partial assignment **WA=Red**, using Backtracking with Forward Checking constraint propagation:\n\nWhat is the final valid assignment found for **SA, NT, and Q**?",
+    "question": "Given the Australia Map Coloring problem with 3 colors {Red, Green, Blue} and a partial assignment **WA=Red**, using Backtracking with Forward Checking constraint propagation:\n\nWhat is the final valid assignment found for **SA, NT, and Q**?",
     "code_file": "CSP_MapColoring_FC.cpp",
     "valid_responses": [
       { "text": "SA=Blue, NT=Green, Q=Red", "score": 100 },
@@ -341,7 +198,7 @@
     "topic": "Constraint Satisfaction (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "easy",
-    "question": "Run 'CSP_Inequality_AC3.cpp'. Given variables X, Y, Z with domains {1, 2, 3} and constraints **X < Y < Z**:\n\nWhat is the only valid integer assignment for these variables?",
+    "question": "Given variables X, Y, Z with domains {1, 2, 3} and constraints **X < Y < Z**:\n\nWhat is the only valid integer assignment for these variables?",
     "code_file": "CSP_Inequality_AC3.cpp",
     "valid_responses": [
       { "text": "X=1, Y=2, Z=3", "score": 100 },
@@ -354,7 +211,7 @@
     "topic": "Constraint Satisfaction (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "hard",
-    "question": "Run 'CSP_Logic_MRV.cpp'. Solving a scheduling problem with variables A, B, C, D (Hours 1-4) and constraints: **B > A, C > B**. Given a partial assignment **D=2**:\n\nWhat are the resulting values for A, B, and C found by the MRV heuristic?",
+    "question": "Solving a scheduling problem with variables A, B, C, D (Hours 1-4) and constraints: **B > A, C > B**. Given a partial assignment **D=2**:\n\nWhat are the resulting values for A, B, and C found by the MRV heuristic?",
     "code_file": "CSP_Logic_MRV.cpp",
     "valid_responses": [
       { "text": "A=1, B=2, C=3", "score": 100 },
@@ -367,7 +224,7 @@
     "topic": "Constraint Satisfaction (Simulation)",
     "type": "dynamic_algo",
     "difficulty": "medium",
-    "question": "Run 'CSP_NQueens_4_FC.cpp'. In a 4-Queens problem where the **first queen is fixed at (0, 1)** (Row 0, Column 1):\n\nWhat is the solution vector found? (Format: [col_row0, col_row1, ...])",
+    "question": "In a 4-Queens problem where the **first queen is fixed at (0, 1)** (Row 0, Column 1):\n\nWhat is the solution vector found? (Format: [col_row0, col_row1, ...])",
     "code_file": "CSP_NQueens_4_FC.cpp",
     "valid_responses": [
       { "text": "[1, 3, 0, 2]", "score": 100 },
