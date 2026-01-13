@@ -4,7 +4,7 @@ This project requires Python 3.9 or higher. Follow these instructions to set up 
 
   1. Create a Virtual Environment (Recommended)
 
-    It is best practice to isolate project dependencies. Open your terminal or command prompt and navigate to the project folder.
+  It is best practice to isolate project dependencies. Open your terminal or command prompt and navigate to the project folder.
 
   On Windows:
   
@@ -33,24 +33,24 @@ This project requires Python 3.9 or higher. Follow these instructions to set up 
 
   2. Install Dependencies
 
-    Once the virtual environment is activated, install all required packages:
+  Once the virtual environment is activated, install all required packages:
 
     pip install -r requirements.txt
 
 
   3. Additional Requirement: C++ Compiler
 
-    To run dynamic simulations (like Knight's Tour or Graph Coloring), you must have a C++ compiler installed on your system.
+  To run dynamic simulations (like Knight's Tour or Graph Coloring), you must have a C++ compiler installed on your system.
 
-    Windows: Install MinGW-w64 and ensure g++ is added to your system PATH.
+  Windows: Install MinGW-w64 and ensure g++ is added to your system PATH.
 
-    Linux (Ubuntu/Debian):
+  Linux (Ubuntu/Debian):
 
       sudo apt-get update
       sudo apt-get install build-essential
 
 
-    macOS: Install Xcode Command Line Tools:
+  macOS: Install Xcode Command Line Tools:
 
       xcode-select --install
 
